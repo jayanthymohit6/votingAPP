@@ -1,26 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React ,{Component} from 'react';
 
-function App() {
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import { voteAngular, voteReact, voteVueJs } from './actions/action';
+
+class App extends Component {
+constructor(props) {
+  super(props);
+  this.store = this.props.store;
+}
+
+handleVoteAngular = () => {
+this.store.dispatch(voteAngular())
+}
+handleVoteReact = () => {
+  this.store.dispatch(voteReact())
+}
+handleVoteVuejs =() => {
+  this.store.dispatch(voteVueJs())
+}
+
+render() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+    
+      <h2>What is your favorite front-end development framework ?</h2>
+      <h4>Click on the logos below to vote!</h4>
+      <br />
+      <div className="row">
+        <div className="col-xs-offset-3 col-xs-2">
+          <img src={require('../src/assets/angular.png')} height="96" alt="Angular" onClick={this.handleVoteAngular}></img>
+        </div>
+        <div className="col-xs-2">
+          <img src={require('../src/assets/react.png')} height="96" alt="React" onClick={this.handleVoteReact}></img>
+        </div>
+        <div className="col-xs-2">
+          <img src={require('../src/assets/vue.png')} height="96" alt="Vue.js" onClick={this.handleVoteVuejs}></img>
+        </div>
+      </div>
     </div>
+ 
   );
+}
 }
 
 export default App;
